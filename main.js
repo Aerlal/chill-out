@@ -1,3 +1,15 @@
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+
+  return (
+    rect.bottom > 0 &&
+    rect.right > 0 &&
+    rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.left < (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
+const draggableHeader = document.getElementById('draggableheader');
+
 const fireplace = document.getElementById('fireplace');
 let timesClicked = 0;
 fireplace.addEventListener('click', () => {
@@ -5,7 +17,7 @@ fireplace.addEventListener('click', () => {
     let ran = Math.random() * 100;
     if (ran > 50 && timesClicked != 10) {
         alert("Chill");
-    }else if (ran <=50 && timesClicked != 10) {
+    } else if (ran <= 50 && timesClicked != 10) {
         alert("Relax");
     }
 })
@@ -48,5 +60,32 @@ function dragElement(elmnt) {
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
+    snapElementIntoViewport(elmnt);
+  }
+  function snapElementIntoViewport(elmnt) {
+    const rect = elmnt.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    let newLeft = elmnt.offsetLeft;
+    let newTop = elmnt.offsetTop;
+
+    if (rect.left < 0) {
+      newLeft -= rect.left;
+    }
+    if (rect.top < 0) {
+      newTop -= rect.top;
+    }
+    if (rect.right > viewportWidth) {
+      newLeft -= rect.right - viewportWidth;
+    }
+    if (rect.bottom > viewportHeight) {
+      newTop -= rect.bottom - viewportHeight;
+    }
+
+    newLeft = Math.max(0, newLeft);
+    newTop = Math.max(0, newTop);
+
+    elmnt.style.left = newLeft + "px";
+    elmnt.style.top = newTop + "px";
   }
 }
