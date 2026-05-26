@@ -29,23 +29,16 @@
 
 
 body{
-  min-height: 100vh;
-  margin: 0;
-  padding: 2rem;
-  background-image: linear-gradient(to bottom, #2a505c, #252948 );
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-auto-columns: 1fr;
   grid-template-areas:
     "title"
     "mainContent";
-  justify-items: center;
-  align-items: start;
-  gap: 1.5rem;
+    justify-items: center;
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom, #2a505c, #252948 );
 }
 .title{
-  position: static;
-  justify-self: center;
   transform: none;
   text-align: center;
   font-family: "jacquard 12";
@@ -65,29 +58,28 @@ body{
   margin-bottom: 0.5em;
 }
 .mainContent{
+  grid-area: mainContent;
   display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-rows:auto;
+  grid-template-areas:
+    "h3 h3 h3"
+    "iconContainer pond fire"
+    "iconContainer pond fire"
+    "iconContainer pond fire";
   width: min(640px, 100%);
   font-family: "bytesized";
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
   padding: 20px;
-  grid-area: mainContent;
   border-radius: 3px;
   margin: 0;
-  align-self: start;
-  justify-self: center;
-  row-gap: 1rem;
-  grid-template-columns: auto 1fr;
-  grid-template-areas:
-    "mainTitle mainTitle"
-    "githubIcon fireplace"
-    "lichessIcon fireplace";
 }
 .mainContent h3{
+  grid-area: h3;
   font-size: 1.5em;
   color: white;
   mix-blend-mode: difference;
   text-align: center;
-  grid-area: mainTitle;
 }
 
 .mainContent h3::after {
@@ -98,12 +90,10 @@ body{
   background-color: white;
   margin-top: 10px;
   mix-blend-mode: exclusion;
-  margin-bottom: 5px
+  margin-bottom: 1px
 }
 
 .mainContent a {
-  display: flex;
-  align-self: left;
   margin-top: 10px;
   width: 60px;
   height: 60px;
@@ -119,23 +109,19 @@ body{
   filter: invert();
 }
 .fire{
+  grid-area: fire;
   width: 150px;
   height: 150px;
-  grid-area: fireplace;
-  justify-self: end;
 }
 #fireplace{
   width: 150px;
   height: 150px;
-  margin-right: 0;
 }
 .fire:hover{
   cursor: pointer;
 }
 #lichess-icon{
   background-color: white;
-  padding: 2px;
-  grid-area: lichessIcon;
 }
 .draggable{
   position: absolute;
@@ -159,14 +145,21 @@ iframe{
   user-select: none;
 }
 #pond{
-  display: box;
-  positon: relative;
-  margin-left: auto;
-  margin-right: auto;
+  grid-area: pond;
   border: 7px solid #000000;
   border-radius: 5px;
   width: 150px;
   height: 150px;
   background: #3F5EFB;
   background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(24, 11, 120, 1) 100%);
+}
+#iconContainer{
+  grid-area: iconContainer;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.icon{
+  max-width: 90px;
+  max-height: 90px;
 }
