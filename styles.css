@@ -158,3 +158,15 @@ iframe{
   cursor: grab;
   user-select: none;
 }
+#pond{
+  display: box;
+  positon: relative;
+  margin-left: auto;
+  margin-right: auto;
+  border: 7px solid #000000;
+  border-radius: 5px;
+  width: 150px;
+  height: 150px;
+  background: #3F5EFB;
+  background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(24, 11, 120, 1) 100%);
+}
