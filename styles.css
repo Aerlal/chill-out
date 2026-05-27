@@ -110,6 +110,8 @@ body{
 }
 .fire{
   grid-area: fire;
+  align-self: center;
+  justify-self: center;
   width: 150px;
   height: 150px;
 }
@@ -121,6 +123,8 @@ body{
   cursor: pointer;
 }
 #lichess-icon{
+  width: 90px;
+  height: 90px;
   background-color: white;
 }
 .draggable{
@@ -146,20 +150,31 @@ iframe{
 }
 #pond{
   grid-area: pond;
-  border: 7px solid #000000;
+  border: 4px solid #000000;
+  justify-self: center;
   border-radius: 5px;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
+  align-self: center;
   background: #3F5EFB;
   background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(24, 11, 120, 1) 100%);
 }
 #iconContainer{
   grid-area: iconContainer;
-  width: 150px;
+  width: 90px;
+  align-self: center;
+  height: max-content;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
-.icon{
-  max-width: 90px;
-  max-height: 90px;
+#github-icon{
+  margin-top: 0;
+  height: 90px;
+  width: 90px;
+}
+#iconContainer a{
+  width: 90px;
+  height: 90px;
 }
